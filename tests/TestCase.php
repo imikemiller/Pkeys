@@ -1,15 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: mike
  * Date: 29/07/17
- * Time: 07:49
+ * Time: 08:21
  */
-
-namespace Pkeys;
-
-
-class pkeys
+class TestCase extends \PHPUnit\Framework\TestCase
 {
 
 }
