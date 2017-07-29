@@ -18,26 +18,6 @@ use Pkeys\Interfaces\ValidatorInterface;
  */
 class ValidationRules implements ValidatorInterface
 {
-
-    /**
-     * @param $ruleName
-     * @param callable $rule
-     */
-    public function addRule($ruleName, callable $rule)
-    {
-        $this->{$ruleName}=$rule;
-    }
-
-    /**
-     * @param $ruleName
-     * @param $arguments
-     * @return mixed
-     */
-    public function __call($ruleName, $arguments)
-    {
-        return call_user_func_array($this->{$ruleName}, $arguments);
-    }
-
     /**
      * Is alpha chars only.
      *

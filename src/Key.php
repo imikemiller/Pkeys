@@ -111,13 +111,10 @@ class Key
             $ruleName = array_shift($args);
             $args = array_prepend($args,$this->getParam($paramName));
 
-            dd($this->validator->$ruleName($args));
             if(method_exists($this->getValidator(),$ruleName)) {
                 if (!call_user_func_array([$this->validator, $ruleName], $args)) {
                     Throw new ValidationException('Key parameter "' . $args[0] . '" failed "' . $ruleName . '" validation.');
                 }
-            }elseif(property_exists($this->getValidator(),$ruleName)){
-                dd('d');
             }else{
                 Throw new ValidationException('Validation rule "' . $ruleName . '" does not exist.');
             }

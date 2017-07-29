@@ -11,7 +11,4 @@ namespace Pkeys\Interfaces;
 
 interface ValidatorInterface
 {
-    public function addRule($ruleName,callable $rule);
-
-    public function __call($ruleName, $arguments);
 }
