@@ -67,15 +67,15 @@ Validation rules in the schema should reference methods on the validator class.
     'schema'=>[
         'redis'=>[
             'user'=>[
-                'messages'=>'user:{id|numeric}:messages'
+                'messages'=>'user:{id|numeric}:messages' //must have a numeric id passed in
             ],
             'users'=>[
-                'count'=>'users:{status|in:active,new,returning}:{day|date}:count'
+                'count'=>'users:{status|in:active,new,returning}:{day|date}:count' //must have status and day passed in
             ]
         ],
         'cache'=>[
             'user'=>[
-                'profile'=>'user.{id}.profile'
+                'profile'=>'user.{id}.profile' //allows any data tyop
             ]
         ],
         'events'=>[
