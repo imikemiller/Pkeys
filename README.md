@@ -70,7 +70,7 @@ Validation rules in the schema should reference methods on the validator class.
                 'messages'=>'user:{id|numeric}:messages'
             ],
             'users'=>[
-                'count'=>'users:{status}:{day|date}:count'
+                'count'=>'users:{status|in:active,new,returning}:{day|date}:count'
             ]
         ],
         'cache'=>[
