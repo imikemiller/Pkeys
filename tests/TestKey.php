@@ -74,10 +74,12 @@ class TestKey extends TestCase
     public function test_validation_rule_does_not_exist()
     {
         $pattern = 'this:is:{a|ruledoesntexist}:pattern';
-        $key = (new \Pkeys\Key($pattern,['a'=>'whatevers']))->build();
-        $this->assertInstanceOf(\Pkeys\Key::class,$key);
+        (new \Pkeys\Key($pattern,['a'=>'whatevers']))->build();
     }
 
+    /**
+     *
+     */
     public function test_key_generation()
     {
         $pattern = 'this:is:{a}:pattern:{with}:several:{params|numeric}:in:{it}';
@@ -105,8 +107,6 @@ class TestKey extends TestCase
         $key->build();
 
         $this->assertEquals('is:11:pattern:22:33:in',$key->getKey());
-
-
     }
 }
 
