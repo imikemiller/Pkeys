@@ -10,6 +10,7 @@ namespace Pkeys;
 
 use Illuminate\Support\Arr;
 use Pkeys\Exceptions\PkeyException;
+use Pkeys\Interfaces\ValidatorInterface;
 
 /**
  * Class Pkey
@@ -23,14 +24,25 @@ class Pkey
     protected $schema =[];
 
     /**
+     * @var
+     */
+    protected $customValidator;
+
+    /**
      * Pkey constructor.
      * @param $schemaPath
      */
-    public function __construct($schemaPath)
+    public function __construct($schemaPath,ValidatorInterface $customValidator =null )
     {
         $this->setSchema(include $schemaPath);
+        $this->setCustomValidator($customValidator);
     }
 
+    /**
+     * @param $index
+     * @return Key
+     * @throws PkeyException
+     */
     public function make($index)
     {
         $schema = $this->getSchema();
@@ -41,7 +53,11 @@ class Pkey
                 $key->setDelimiters($schema['delimiters']);
             }
 
-            return $key;
+            if($validator = $this->getCustomValidator()){
+                $key->setValidator($validator);
+            }
+
+            return $key->build();
         }
 
         Throw new PkeyException('Cannot find a key pattern with this index: '.$index);
@@ -61,6 +77,23 @@ class Pkey
     public function setSchema($schema)
     {
         $this->schema = $schema;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomValidator()
+    {
+        return $this->customValidator;
+    }
+
+    /**
+     * @param mixed $customValidator
+     */
+    public function setCustomValidator(ValidatorInterface $customValidator)
+    {
+        $this->customValidator = $customValidator;
         return $this;
     }
 

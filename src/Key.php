@@ -363,17 +363,6 @@ class Key
     }
 
     /**
-     * @param $ruleName
-     * @param callable $rule
-     * @return $this
-     */
-    public function addCustomValidationRule($ruleName, callable $rule)
-    {
-        $this->validator->addRule($ruleName,$rule);
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getKey()
