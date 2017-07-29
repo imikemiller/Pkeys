@@ -86,6 +86,9 @@ class Key
         $this->validator = new ValidationRules();
     }
 
+    /**
+     * @return $this
+     */
     public function build()
     {
         $this->validateParams();
@@ -113,7 +116,7 @@ class Key
 
             if(method_exists($this->getValidator(),$ruleName)) {
                 if (!call_user_func_array([$this->validator, $ruleName], $args)) {
-                    Throw new ValidationException('Key parameter "' . $args[0] . '" failed "' . $ruleName . '" validation.');
+                    Throw new ValidationException('Key parameter "'.$paramName.'" with value "' . $args[0] . '" failed "' . $ruleName . '" validation.');
                 }
             }else{
                 Throw new ValidationException('Validation rule "' . $ruleName . '" does not exist.');
@@ -163,7 +166,7 @@ class Key
     }
 
     /**
-     *
+     * @return $this
      */
     public function parsePattern()
     {
@@ -193,6 +196,9 @@ class Key
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function trimDelimiters()
     {
         $key = $this->getKey();
@@ -204,7 +210,7 @@ class Key
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getDelimiters()
     {
@@ -212,7 +218,7 @@ class Key
     }
 
     /**
-     * @param mixed $delimiters
+     * @param array $delimiters
      */
     public function setDelimiters(array $delimiters)
     {
