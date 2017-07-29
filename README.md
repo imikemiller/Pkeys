@@ -90,7 +90,7 @@ Validation rules in the schema should reference methods on the validator class.
     /*
      * Optionally set the delimiters the parser will use.
      
-     * These allow the parser to tidy up any doubled up delimeters and to trim the key.
+     * These allow the parser to tidy up any doubled up delimiters and to trim the key.
      */
     'delimiters'=>[
         '~',':','*'
