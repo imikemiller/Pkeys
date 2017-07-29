@@ -1,6 +1,6 @@
 {
     "name": "imikemiller/pkeys",
-    "description": "An key management library to keep your key strings consistent, to avoid duplication and to stop the crime of inlining keys in your code",
+    "description": "A key management library to keep your key strings consistent, to avoid your team mates duplicating or overwriting your keys, to protect against typo's and unexpected data types and to stop the crime of inlining keys in your code.",
     "type": "library",
     "require": {
         "phpunit/phpunit": "^6.3@dev",

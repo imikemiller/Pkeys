@@ -33,8 +33,15 @@ class Pkey
 
     public function make($index)
     {
-        if($pattern = Arr::get($this->getSchema(),$index)){
-            return new Key($pattern);
+        $schema = $this->getSchema();
+        if($pattern = Arr::get($schema['schema'],$index)){
+            $key =  new Key($pattern);
+
+            if(isset($schema['delimiters'])){
+                $key->setDelimiters($schema['delimiters']);
+            }
+
+            return $key;
         }
 
         Throw new PkeyException('Cannot find a key pattern with this index: '.$index);

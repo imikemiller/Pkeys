@@ -139,21 +139,22 @@ class Key
              * Does it require validation
              */
             $parts = explode('|',$definedParam);
+            $placeholder = rtrim($parts[0],'?');
             if(str_contains($definedParam,'|')){
                 $rule = rtrim($parts[1],'?');
-                $this->validateParams[$parts[0]]=$rule;
+                $this->validateParams[$placeholder]=$rule;
             }
 
             /*
              * Optional or required param
              */
             if(Str::endsWith($definedParam, '?')){
-                $this->optionalParams[]=rtrim($parts[0],'?');
+                $this->optionalParams[]=$placeholder;
             }else{
-                $this->requiredParams[]=$parts[0];
+                $this->requiredParams[]=$placeholder;
             }
 
-            $pattern = str_replace($definedParam,$parts[0],$pattern);
+            $pattern = str_replace($definedParam,$placeholder,$pattern);
         }
 
         $this->setPattern($pattern);
@@ -166,9 +167,41 @@ class Key
      */
     public function parsePattern()
     {
+        $pattern = $this->getPattern();
+        /*
+         * Parse in the provided params
+         */
+        foreach ($this->params as $index => $value) {
+            // Replace param placeholder with a value
+            $pattern = preg_replace('/\{' . $index .'\}/', $value, $pattern);
+        }
 
+        /*
+         * Strip out the optional params
+         */
+        foreach($this->optionalParams as $param){
+            foreach($this->getDelimiters() as $delimiter){
+                if(str_contains($pattern,"{".$param."}".$delimiter)){
+                    $pattern = preg_replace('/\{' . $param .'\}'.$delimiter.'/', '', $pattern);
+                }
+            }
+            $pattern = preg_replace('/\{' . $param .'\}/', '', $pattern);
+        }
+
+        $this->setKey($pattern);
+        $this->trimDelimiters();
+        return $this;
     }
 
+    public function trimDelimiters()
+    {
+        $key = $this->getKey();
+        foreach($this->delimiters as $delimiter){
+            $key = trim($key,$delimiter);
+        }
+        $this->setKey($key);
+        return $this;
+    }
 
     /**
      * @return mixed

@@ -7,25 +7,36 @@
  */
 
 return [
-    'redis'=>[
-        'user'=>[
-            'messages'=>'user:{id}:messages'
+    /*
+     * Real world schema usage examples.
+     */
+    'schema'=>[
+        'redis'=>[
+            'user'=>[
+                'messages'=>'user:{id|numeric}:messages'
+            ],
+            'users'=>[
+                'count'=>'users:{status}:{day|date}:count'
+            ]
         ],
-        'users'=>[
-            'count'=>'users:{status}:{period}:count'
+        'cache'=>[
+            'user'=>[
+                'profile'=>'user.{id}.profile'
+            ]
+        ],
+        'events'=>[
+            'subscription'=>'subscription-{type|alpha}-{event}'
+        ],
+        'channels'=>[
+            'presence'=>[
+                'user'=>'user:{id}:present'
+            ]
         ]
     ],
-    'cache'=>[
-        'user'=>[
-            'profile'=>'user.{id}.profile'
-        ]
-    ],
-    'events'=>[
-        'subscription'=>'subscription-{type}-{event}'
-    ],
-    'channels'=>[
-        'presence'=>[
-            'user'=>'user:{id}:present'
-        ]
+    /*
+     * Optionally set the delimiters the parser will use.
+     */
+    'delimiters'=>[
+        '~',':','*'
     ]
 ];

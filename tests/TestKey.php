@@ -77,6 +77,37 @@ class TestKey extends TestCase
         $key = (new \Pkeys\Key($pattern,['a'=>'whatevers']))->build();
         $this->assertInstanceOf(\Pkeys\Key::class,$key);
     }
+
+    public function test_key_generation()
+    {
+        $pattern = 'this:is:{a}:pattern:{with}:several:{params|numeric}:in:{it}';
+        $key = (new \Pkeys\Key($pattern,['a'=>11,'with'=>22,'params'=>'33','it'=>44]))->build();
+        $this->assertEquals('this:is:11:pattern:22:several:33:in:44',$key->getKey());
+
+        $pattern = 'this:is:{a}:pattern:{with}:several:{params|numeric}:in:{it?}';
+        $key = (new \Pkeys\Key($pattern,['a'=>11,'with'=>22,'params'=>'33']))->build();
+
+        $this->assertEquals('this:is:11:pattern:22:several:33:in',$key->getKey());
+
+        $pattern = '{this?}:is:{a}:pattern:{with}:several:{params|numeric}:in:{it?}';
+        $key = (new \Pkeys\Key($pattern,['a'=>11,'with'=>22,'params'=>'33']))->build();
+
+        $this->assertEquals('is:11:pattern:22:several:33:in',$key->getKey());
+
+        $pattern = '{this?}:is:{a}:pattern:{with}:{several?}:{params|numeric}:in:{it?}';
+        $key = (new \Pkeys\Key($pattern,['a'=>11,'with'=>22,'params'=>'33']))->build();
+
+        $this->assertEquals('is:11:pattern:22:33:in',$key->getKey());
+
+        $pattern = '{this?}:is:{a}:pattern:{with}:{several?}~{params|numeric}:in:{it?}';
+        $key = new \Pkeys\Key($pattern,['a'=>11,'with'=>22,'params'=>'33']);
+        $key->setDelimiters([':','~']);
+        $key->build();
+
+        $this->assertEquals('is:11:pattern:22:33:in',$key->getKey());
+
+
+    }
 }
 
 
