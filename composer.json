@@ -1,0 +1,17 @@
+{
+    "name": "imikemiller/pkeys",
+    "description": "An key management library to keep your key strings consistent, to avoid duplication and to stop the crime of inlining keys in your code",
+    "type": "library",
+    "require": {
+        "rappasoft/laravel-helpers": "dev-master",
+        "illuminate/validation": "^5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Miller",
+            "email": "mike@mikemiller.uk"
+        }
+    ],
+    "minimum-stability": "dev"
+}
