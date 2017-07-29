@@ -1,5 +1,5 @@
 # Pkeys
-A key management library to keep your key strings consistent, to avoid your team mates duplicating or overwriting your keys, to protect against typo's and unexpected data types and to stop the crime of inlining keys in your code.
+A framework agnostic key management library to keep your key strings consistent, to avoid your team mates duplicating or overwriting your keys, to protect against typo's and unexpected data types and to stop the crime of inlining keys in your code.
 
 ## What is it for?
 Initially it was a solution for managing Redis keys to avoid keys being duplicated or overwritten, but then the solution found a place in the managment of key strings for analytics events, cache items, realtime messaging channels or really anything that is identified by a key string. 
