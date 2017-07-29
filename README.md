@@ -95,4 +95,3 @@ Validation rules in the schema should reference methods on the validator class.
     'delimiters'=>[
         '~',':','*'
     ]
-];
