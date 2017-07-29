@@ -51,6 +51,13 @@ That is it! A simple solution to an annoying problem.
  * `in`: Ensures the param is inside a CSV list of acceptable options
  * `notIn`: Ensures the param is not inside a CSV list
  * `json`: Ensures the param is a valid JSON - its sometimes handy to use a full JSON as a key in Redis.
+ 
+#### Custom Validation
+If you need to add a custom validator you can extend the existing `\Pkeys\Validation\ValidationRules` class or you can write your own that implmenents the `\Pkeys\Interfaces\ValidatorInterface` and pass it into the Pkey constructor.
+
+  `$pkey = new Pkey('path/to/schema.php',$customValidator);`  
+
+Validation rules in the schema should reference methods on the validator class.
 
 #### Example Schema 
 ```return [
