@@ -24,7 +24,7 @@ By storing your keys in a schema it makes consistency easier and makes it clear 
 #### Define Schema
 First off define your schema. Keys are accessible by referring to their array path using the array dot notation eg `redis.user.messages`. Parameters are defined using curly brackets `{}`. They can be optional by including a `?` and can be validated by seperating the parameter name with the validation rule by using a pipe `|`. See below for realworld example schema and list of available validation rules.
 
-NOTE: Your schema must include an array under the key `schema` and can optionally include an array of delimiters under the key `delimiters`. By default Pkeys allows the following delimiters `:`,`.` & `-`.
+NOTE: Your schema must include an array under the key `schema` and can optionally include an array of delimiters under the key `delimiters`. By default Pkeys allows the following delimiters `:` `.` `-`
 
 #### Generate Key
 Once your schema has been defined it can be loaded into Pkeys by passing in the schema file path to the constructor. 
