@@ -34,9 +34,13 @@ class Pkey
      * @param $schemaPath
      * @param ValidatorInterface|null $customValidator
      */
-    public function __construct($schemaPath,ValidatorInterface $customValidator =null )
+    public function __construct($schema,ValidatorInterface $customValidator =null )
     {
-        $this->setSchema(include $schemaPath);
+        if(is_array($schema)){
+            $this->setSchema($schema);
+        }else{
+            $this->setSchema(include $schema);
+        }
         $this->setCustomValidator($customValidator);
     }
 
