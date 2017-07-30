@@ -25,6 +25,8 @@ By storing your keys in a schema it makes consistency easier and makes it clear 
 
 ### Use
 
+Check out an example using Pkeys with Redis [here](https://github.com/imikemiller/Pkeys-Predis-Example)
+
 #### Define Schema
 First off define your schema. Keys are accessible by referring to their array path using the array dot notation eg `redis.user.messages`. Parameters are defined using curly brackets `{}`. They can be optional by including a `?` and can be validated by seperating the parameter name with the validation rule by using a pipe `|`. See below for realworld example schema and list of available validation rules.
 
