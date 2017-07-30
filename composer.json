@@ -3,8 +3,10 @@
     "description": "A key management library to keep your key strings consistent, to avoid your team mates duplicating or overwriting your keys, to protect against typo's and unexpected data types and to stop the crime of inlining keys in your code.",
     "type": "library",
     "require": {
-        "phpunit/phpunit": "^6.3@dev",
-        "illuminate/support": "^5.5@dev"
+        "illuminate/support": "^5.1"
+    },
+    "require-dev":{
+        "phpunit/phpunit": "^5.0"
     },
     "license": "MIT",
     "authors": [
