@@ -19,6 +19,10 @@ By storing your keys in a schema it makes consistency easier and makes it clear 
 
 ### Install
 
+`composer require imikemiller/pkeys`
+
+[Packagist](https://packagist.org/packages/imikemiller/pkeys#dev-master)
+
 ### Use
 
 #### Define Schema
